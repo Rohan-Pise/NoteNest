@@ -1,6 +1,6 @@
 
 import axios from 'axios'
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useRecoilState , useResetRecoilState } from 'recoil'
 import { loginState , loggedInState } from '../stateStore/authStore'
 import { messageState } from '../stateStore/authStore';
@@ -27,7 +27,7 @@ export function useCustomLoginHook() {
   const handleSubmit = async ()=>{
     //e.preventDefault();
     try{
-   const res =  await axios.post("http://localhost:3000/login",loginVal,{
+   const res =  await axios.post(`${API_BASE_URL}/login`,loginVal,{
     withCredentials: true // Ensures cookies are sent with the request
   });
   console.log(res);
@@ -46,7 +46,7 @@ export function useCustomLoginHook() {
 
 const checkAuth = async()=>{
   try{
-    await axios.get("http://localhost:3000/checkAuth",{withCredentials:true});
+    await axios.get(`${API_BASE_URL}/checkAuth`,{withCredentials:true});
 
     setIsLoggedInVal(true);
   }catch(err){

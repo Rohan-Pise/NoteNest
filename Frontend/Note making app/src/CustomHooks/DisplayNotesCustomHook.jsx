@@ -1,4 +1,5 @@
 import { useRecoilState } from "recoil";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useEffect } from "react";
 import { formState, notesState, updateState } from "../stateStore/atoms";
 import axios from "axios";
@@ -16,7 +17,7 @@ export function useDisplayNotesCustomHook() {
   //function ->1
   const fetchNotes = async () => {
     //Fetches the notes
-    const res = await axios.get("http://localhost:3000/notes",{withCredentials:true});
+    const res = await axios.get(`${API_BASE_URL}/notes`,{withCredentials:true});
 
     //Set to State
     setNotes(res.data.notes);
@@ -25,7 +26,7 @@ export function useDisplayNotesCustomHook() {
 
   const deleteNote = async (_id) => {
     //Delete the Note
-    const res = await axios.delete(`http://localhost:3000/notes/${_id}`,{withCredentials:true});
+    const res = await axios.delete(`${API_BASE_URL}/notes/${_id}`,{withCredentials:true});
     console.log(res);
 
     //update the state

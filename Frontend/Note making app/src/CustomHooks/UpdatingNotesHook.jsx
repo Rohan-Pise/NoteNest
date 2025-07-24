@@ -1,4 +1,5 @@
 import { useRecoilState } from 'recoil';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import {  notesState , updateState } from '../stateStore/atoms';
 import axios from "axios";
 
@@ -12,7 +13,7 @@ export function useUpdatingNotesHook() {
   const {title , body} = updateForm;
   
     //send update request
-    const res = await axios.put(`http://localhost:3000/notes/${updateForm._id}`,{title,body},{withCredentials:true})
+    const res = await axios.put(`${API_BASE_URL}/notes/${updateForm._id}`,{title,body},{withCredentials:true})
   
   console.log(res);
     //update state

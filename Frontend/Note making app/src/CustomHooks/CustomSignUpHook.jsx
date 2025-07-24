@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useRecoilState , useResetRecoilState } from 'recoil'
 import { signupState  } from '../stateStore/authStore'
 import { messageState } from '../stateStore/authStore';
@@ -24,7 +24,7 @@ export function useCustomSignUpHook() {
   const handleSubmit = async ()=>{
     //e.preventDefault();
     
-   const res =  await axios.post("http://localhost:3000/signup",signUp,{
+   const res =  await axios.post(`${API_BASE_URL}/signup`,signUp,{
     withCredentials: true // Ensures cookies are sent with the request
   });
 

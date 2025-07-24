@@ -18,7 +18,7 @@ function LoginForm() {
   }
 
   return (
-    <div>
+    <div  className=' h-screen bg-white'>
     <section class="py-10 bg-gray-50 sm:py-16 lg:py-24">
       <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="max-w-2xl mx-auto text-center">

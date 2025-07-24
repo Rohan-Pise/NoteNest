@@ -1,4 +1,5 @@
 import { useRecoilState } from 'recoil';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { formState , notesState , updateState } from '../stateStore/atoms';
 import axios from "axios";
 
@@ -27,7 +28,7 @@ export function useCreateNote(){
   const createNote = async (e) => {
     e.preventDefault();
     //Create Note
-    const res = await axios.post("http://localhost:3000/notes", formValues,{withCredentials:true});
+    const res = await axios.post(`${API_BASE_URL}/notes`, formValues,{withCredentials:true});
 
     //update the state about new Note included
    

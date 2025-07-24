@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import {notesState} from '../stateStore/atoms';
 import {formState} from '../stateStore/atoms';
 import {updateState} from '../stateStore/atoms';
-import{ BrowserRouter , Routes , Route, Link} from "react-router-dom"
+import {BrowserRouter , Routes , Route, Link} from "react-router-dom"
 import NotesPage from "../pages/NotesPage";
 import LoginPage from "../pages/LoginPage"
 
@@ -72,10 +72,8 @@ function App() {
        console.log(res);
 
        //update the state 
-       const newNotes = [...notes].filter(note =>{
-        return note._id !== _id;
-       });
-       setNotes(newNotes);
+       setNotes(notes.filter(note => note._id !== _id));
+
   }
 
   //function ->5 
