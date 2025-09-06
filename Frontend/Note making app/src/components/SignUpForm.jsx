@@ -1,9 +1,12 @@
-import React from 'react'
+import  { useState } from 'react'
 import {useCustomSignUpHook} from '../CustomHooks/CustomSignUpHook'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 function SignUpForm() {
+
+
+  const [error , setError] = useState(false);
 
   const {signUp,handleSubmit,updateSignUpForm } = useCustomSignUpHook();
   const navigate = useNavigate()
@@ -12,10 +15,16 @@ function SignUpForm() {
   const handleSignUp=async (e)=>{
     e.preventDefault();
 
-     await handleSubmit();
+    let res =  await handleSubmit();
+
+    console.log(res);
+
+    if(res.success === false){
+     setError(res.message);
+    }
      
      //Navigate
-     navigate("/login")
+     if(res.success) navigate("/login")
   }
 
   return (
@@ -68,6 +77,11 @@ function SignUpForm() {
                         class="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600"
                       />
                     </div>
+                     {error && (
+    <span className="text-red-500 text-sm mt-1 block">
+      {error}
+    </span>
+  )}
                   </div>
 
                   <div>

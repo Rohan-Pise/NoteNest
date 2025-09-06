@@ -21,20 +21,23 @@ export function useCustomSignUpHook() {
    
   }
 
-  const handleSubmit = async ()=>{
-    //e.preventDefault();
-    
-   const res =  await axios.post(`${API_BASE_URL}/signup`,signUp,{
-    withCredentials: true // Ensures cookies are sent with the request
-  });
+  const handleSubmit = async () => {
+  try {
+    await axios.post(`${API_BASE_URL}/signup`, signUp, {
+      withCredentials: true, // Ensures cookies are sent with the request
+    });
 
-  console.log(res.data);
-
-  
-
-  reSetSignUpForm();
- 
-}
+    reSetSignUpForm();
+    return { success: true }; // optional, to indicate success
+  } catch (err) {
+    if (err.response && err.response.data && err.response.data.msg) {
+      reSetSignUpForm();
+      return { success: false, message: err.response.data.msg };
+    } else {
+      return { success: false, message: "Something went wrong!" };
+    }
+  }
+};
 
 
   return {
