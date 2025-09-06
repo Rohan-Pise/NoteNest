@@ -19,7 +19,7 @@ export function useFormManip() {
     formValues,
     updateFormValue
   };
-};
+}
 
 export function useCreateNote(){
   const [formValues , setFormValues] = useRecoilState(formState);
